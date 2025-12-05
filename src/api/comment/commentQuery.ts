@@ -8,7 +8,8 @@ export const useCreateCommentMutation = (postId: string) => {
   return useMutation({
     mutationFn: (content: string) => createComment(postId, content),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['blog', postId] });
+      queryClient.invalidateQueries({ queryKey: ['blog', postId], refetchType: 'all' });
+      queryClient.invalidateQueries({ queryKey: ['blogs'], refetchType: 'all' });
     },
   });
 };
@@ -20,7 +21,8 @@ export const useDeleteCommentMutation = (postId: string) => {
   return useMutation({
     mutationFn: (commentId: number) => deleteComment(commentId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['blog', postId] });
+      queryClient.invalidateQueries({ queryKey: ['blog', postId], refetchType: 'all' });
+      queryClient.invalidateQueries({ queryKey: ['blogs'], refetchType: 'all' });
     },
   });
 };
