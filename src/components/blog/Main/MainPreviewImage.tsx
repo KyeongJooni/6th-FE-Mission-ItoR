@@ -20,7 +20,7 @@ const MainPreviewImage = memo(({ className, src, priority = false }: MainPreview
         src={imageUrl}
         alt="Blog preview"
         loading={priority ? 'eager' : 'lazy'}
-        fetchpriority={priority ? 'high' : undefined}
+        {...(priority && { fetchpriority: 'high' })}
         className={imageStyle}
       />
     </div>
