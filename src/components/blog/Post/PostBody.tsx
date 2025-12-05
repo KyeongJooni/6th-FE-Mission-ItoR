@@ -14,7 +14,7 @@ const PostBody = ({ content, placeholder = '', className = '', isMarkdown = fals
   if (isMarkdown && !isEmpty) {
     return (
       <div className={`flex w-full max-w-[688px] items-center justify-center gap-2.5 p-3 ${className}`}>
-        <div className="flex-1" data-color-mode="light">
+        <div className="post-body-content flex-1 break-words" data-color-mode="light">
           <MDEditor.Markdown source={content} style={{ backgroundColor: 'transparent' }} />
         </div>
       </div>
@@ -30,8 +30,8 @@ const PostBody = ({ content, placeholder = '', className = '', isMarkdown = fals
       <div
         className={
           hasSpecialTags
-            ? `prose prose-sm max-w-none flex-1 ${isEmpty ? 'text-gray-56' : 'text-gray-dark'}`
-            : `flex-1 text-sm font-light leading-[160%] tracking-[-0.07px] ${isEmpty ? 'text-gray-56' : 'text-gray-dark'}`
+            ? `post-body-content prose prose-sm max-w-none flex-1 break-words ${isEmpty ? 'text-gray-56' : 'text-gray-dark'}`
+            : `post-body-content flex-1 break-words text-sm font-light leading-[160%] tracking-[-0.07px] ${isEmpty ? 'text-gray-56' : 'text-gray-dark'}`
         }
         dangerouslySetInnerHTML={{ __html: isEmpty ? placeholder : content }}
       />

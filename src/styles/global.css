@@ -45,13 +45,13 @@ body {
 /* 블로그 미리보기 행 레이아웃 */
 .blog-preview-row {
   /* 기본 웹 레이아웃 */
-  @apply flex max-w-content items-start gap-4 self-stretch border-b border-gray-96 bg-white px-0 py-2;
+  @apply flex max-w-content items-stretch gap-4 self-stretch border-b border-gray-96 bg-white px-0 py-2;
 }
 
 /* 모바일 반응형 - 768px 이하에서 가로 배치 유지 */
 @media (max-width: 767px) {
   .blog-preview-row {
-    @apply flex max-w-content items-start gap-4 self-stretch border-b border-gray-96 bg-white px-0 py-2;
+    @apply flex max-w-content items-stretch gap-4 self-stretch border-b border-gray-96 bg-white px-0 py-2;
   }
 }
 
@@ -66,6 +66,13 @@ body {
 
 .sidebar-closed {
   @apply -translate-x-full;
+}
+
+/* PostBody 내부 HTML 요소 줄바꿈 - 영어 긴 단어 처리 */
+.post-body-content,
+.post-body-content * {
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* 로그인 모달 및 페이지 유틸리티 클래스 */

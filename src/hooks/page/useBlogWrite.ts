@@ -75,18 +75,52 @@ export const useBlogWrite = () => {
     };
   }, [reset]);
 
+  // 이미지 업로드
+  const { handleImageUpload, handleImageDrop, handleImagePaste } = useImageUpload({
+    mode,
+    markdownContent,
+    setMarkdownContent,
+    quillRef,
+  });
+
+  // 툴바 이미지 버튼 핸들러
+  const handleImageUploadRef = useRef(handleImageUpload);
+
+  useEffect(() => {
+    handleImageUploadRef.current = handleImageUpload;
+  }, [handleImageUpload]);
+
+  const handleToolbarImageClick = useCallback(() => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (file) {
+        await handleImageUploadRef.current(file);
+      }
+    };
+  }, []);
+
   // ReactQuill 모듈 설정
   const modules = useMemo(
     () => ({
-      toolbar: [
-        BLOG_TEXTS.WRITE.TOOLBAR.HEADERS,
-        BLOG_TEXTS.WRITE.TOOLBAR.TEXT_STYLES,
-        BLOG_TEXTS.WRITE.TOOLBAR.LISTS,
-        BLOG_TEXTS.WRITE.TOOLBAR.LINKS_IMAGES,
-        BLOG_TEXTS.WRITE.TOOLBAR.CLEAN,
-      ],
+      toolbar: {
+        container: [
+          BLOG_TEXTS.WRITE.TOOLBAR.HEADERS,
+          BLOG_TEXTS.WRITE.TOOLBAR.TEXT_STYLES,
+          BLOG_TEXTS.WRITE.TOOLBAR.LISTS,
+          BLOG_TEXTS.WRITE.TOOLBAR.LINKS_IMAGES,
+          BLOG_TEXTS.WRITE.TOOLBAR.CLEAN,
+        ],
+        handlers: {
+          image: handleToolbarImageClick,
+        },
+      },
     }),
-    []
+    [handleToolbarImageClick]
   );
 
   // 모바일용 툴바 설정
@@ -94,9 +128,12 @@ export const useBlogWrite = () => {
     () => ({
       toolbar: {
         container: [['image']],
+        handlers: {
+          image: handleToolbarImageClick,
+        },
       },
     }),
-    []
+    [handleToolbarImageClick]
   );
 
   // 에디터 스타일
@@ -117,14 +154,6 @@ export const useBlogWrite = () => {
     }),
     [mode]
   );
-
-  // 이미지 업로드
-  const { handleImageUpload, handleImageDrop, handleImagePaste } = useImageUpload({
-    mode,
-    markdownContent,
-    setMarkdownContent,
-    quillRef,
-  });
 
   return {
     // 상태

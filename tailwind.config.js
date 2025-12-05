@@ -153,6 +153,7 @@ export default {
         'login-form-min': '240px',
         'logo-container-min': '240px',
         'login-textbox-container-min': '240px',
+        'content': '688px', // 컨텐츠 최소 너비
       },
 
       // 최대 높이 토큰

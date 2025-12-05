@@ -34,8 +34,11 @@ export const useDeleteBlogMutation = () => {
 
   return useMutation({
     mutationFn: deleteBlog,
-    onSuccess: () => {
+    onSuccess: (_, blogId) => {
+      // 모든 blogs 목록 쿼리 무효화
       queryClient.invalidateQueries({ queryKey: ['blogs'] });
+      // 삭제된 게시글의 상세 쿼리 무효화
+      queryClient.invalidateQueries({ queryKey: ['blog', blogId] });
     },
   });
 };

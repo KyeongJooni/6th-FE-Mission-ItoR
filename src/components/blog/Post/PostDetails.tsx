@@ -3,7 +3,7 @@ import profileImage from '@/assets/profile.png';
 import { cn } from '@/utils/cn';
 import { MiddleDotIcon } from '@/assets/icons';
 import { postDetailsStyles } from '@/components/blog/Post/PostDetails.styles';
-import { formatCommentDate } from '@/utils/date';
+import { formatPostDate } from '@/utils/date';
 import { BLOG_TEXTS } from '@/constants/blog.constants';
 
 interface PostDetailsProps {
@@ -32,12 +32,12 @@ const PostDetails = memo(({ className, nickName, profileUrl, createdAt, commentC
           <div className={postDetailsStyles.middleDot}>
             <MiddleDotIcon />
           </div>
-          <span className={postDetailsStyles.metaText}>{formatCommentDate(createdAt)}</span>
+          <span className={postDetailsStyles.metaText}>{formatPostDate(createdAt)}</span>
           <div className={postDetailsStyles.middleDot}>
             <MiddleDotIcon />
           </div>
           <span className={postDetailsStyles.metaText}>
-            {BLOG_TEXTS.POST_DETAILS.COMMENT_LABEL}
+            {BLOG_TEXTS.POST_DETAILS.COMMENT_LABEL}&nbsp;
             {commentCount}
           </span>
         </div>

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from '@/layout/Layout';
-import { ErrorBoundary, LoadingSpinner, MyPageForm, MyProfileForm, EditProfileForm, SignupForm } from '@/components';
+import { ErrorBoundary, LoadingSpinner } from '@/components';
 import KakaoLogin from '@/components/auth/KakaoLogin';
 import { PublicRoute } from '@/routes/PublicRoute';
 import { PrivateRoute } from '@/routes/PrivateRoute';
@@ -10,6 +10,10 @@ const MainPage = lazy(() => import('@/pages/main/MainPage'));
 const BlogDetailPage = lazy(() => import('@/pages/blog/BlogDetailPage'));
 const BlogWritePage = lazy(() => import('@/pages/blog/BlogWritePage'));
 const MyPage = lazy(() => import('@/pages/mypage/MyPage'));
+const MyPageForm = lazy(() => import('@/components/mypage/MyPageForm'));
+const MyProfileForm = lazy(() => import('@/components/mypage/MyProfileForm'));
+const EditProfileForm = lazy(() => import('@/components/mypage/EditProfileForm'));
+const SignupForm = lazy(() => import('@/components/mypage/SignupForm'));
 
 const router = createBrowserRouter([
   {
@@ -62,7 +66,9 @@ const router = createBrowserRouter([
             index: true,
             element: (
               <PublicRoute>
-                <MyPageForm />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <MyPageForm />
+                </Suspense>
               </PublicRoute>
             ),
           },
@@ -70,7 +76,9 @@ const router = createBrowserRouter([
             path: 'myprofile',
             element: (
               <PrivateRoute>
-                <MyProfileForm />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <MyProfileForm />
+                </Suspense>
               </PrivateRoute>
             ),
           },
@@ -78,7 +86,9 @@ const router = createBrowserRouter([
             path: 'editprofile',
             element: (
               <PrivateRoute>
-                <EditProfileForm />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <EditProfileForm />
+                </Suspense>
               </PrivateRoute>
             ),
           },
@@ -86,7 +96,9 @@ const router = createBrowserRouter([
             path: 'signup',
             element: (
               <PublicRoute>
-                <SignupForm />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <SignupForm />
+                </Suspense>
               </PublicRoute>
             ),
           },
