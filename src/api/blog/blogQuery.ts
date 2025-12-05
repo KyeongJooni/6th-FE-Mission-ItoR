@@ -109,6 +109,7 @@ export const useBlogDetailQuery = (blogId: string | undefined, isLoggedIn: boole
     queryKey: ['blog', blogId, isLoggedIn],
     queryFn: () => fetchBlogDetail(blogId!, isLoggedIn),
     enabled: Boolean(blogId) && enabled,
+    retry: false,
   });
 };
 
@@ -118,5 +119,6 @@ export const useBlogsQuery = (page = 1, size = 10, isLoggedIn: boolean, enabled 
     queryKey: ['blogs', page, size, isLoggedIn],
     queryFn: () => fetchBlogs(page, size, isLoggedIn),
     enabled,
+    retry: false,
   });
 };
