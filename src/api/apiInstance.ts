@@ -11,7 +11,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 });
 
 // 토큰 관리 함수
-const getAccessToken = (): string | null => {
+export const getAccessToken = (): string | null => {
   if (typeof window === 'undefined') {
     return null;
   }

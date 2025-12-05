@@ -1,12 +1,16 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { getAccessToken } from '../apiInstance';
 import { getUserInfo, updateUser, updateProfilePicture, updateNickname } from './userApi';
 import type { ApiResponse } from '../apiTypes';
 import type * as UserTypes from './userTypes';
 
 export const useUserInfo = () => {
+  const hasToken = Boolean(getAccessToken());
+
   return useQuery<ApiResponse<UserTypes.UserData>>({
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
+    enabled: hasToken,
     staleTime: 5 * 60 * 1000, // 5분
     gcTime: 10 * 60 * 1000, // 10분
     retry: false, // 401 에러 시 재시도하지 않음
