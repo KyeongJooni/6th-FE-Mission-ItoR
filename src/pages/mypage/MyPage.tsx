@@ -12,7 +12,7 @@ const STYLES = {
   wrapper: 'flex w-full flex-col items-center',
   container: 'flex w-full flex-col items-center justify-center self-stretch border-b border-gray-96 bg-gray-96',
   spacerTop: 'w-full max-w-content max-md:h-spacer-mobile-top',
-  spacerTopProfile: 'w-full max-w-content max-md:!h-8',
+  spacerTopProfile: 'w-full max-w-content h-16 max-md:!h-8',
   spacerBottom: 'w-full max-w-content max-md:h-3',
 } as const;
 

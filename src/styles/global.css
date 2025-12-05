@@ -33,9 +33,7 @@ body {
 
 /* 페이지헤더 컨테이너 */
 .page-header-container {
-  @apply fixed top-0 z-50 flex h-[72px] w-full max-w-[1440px] items-center justify-between bg-white/100 p-page-header backdrop-blur-sm;
-  left: 50%;
-  transform: translateX(-50%);
+  @apply fixed top-0 z-50 flex h-[72px] w-full items-center justify-between bg-white/100 p-page-header backdrop-blur-sm;
 }
 
 .page-header-legacy-container {
