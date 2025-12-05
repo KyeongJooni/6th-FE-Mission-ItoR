@@ -2,7 +2,7 @@ import { memo, useMemo, useCallback } from 'react';
 import profileImage from '@/assets/profile.png';
 import { PostBody, Spacer, Icon, DropdownMenu } from '@/components';
 import { MoreVertIcon } from '@/assets/icons';
-import { formatCommentDate } from '@/utils/date';
+import { formatPostDate } from '@/utils/date';
 import { CommentItemProps } from '@/components/blog/Comment/CommentTypes';
 import { profileStyles, commentItemStyles } from '@/components/blog/Comment/Comment.styles';
 import { useAuth } from '@/api/user/userQuery';
@@ -40,7 +40,7 @@ const CommentItem = memo(
                 </div>
                 <div className={profileStyle.userInfo()}>
                   <span className={profileStyle.nickName()}>{nickName}</span>
-                  <span className={styles.date()}>{formatCommentDate(createdAt)}</span>
+                  <span className={styles.date()}>{formatPostDate(createdAt)}</span>
                 </div>
               </div>
             </div>
