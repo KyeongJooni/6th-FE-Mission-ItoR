@@ -132,6 +132,18 @@ export const useBlogWrite = () => {
           image: handleToolbarImageClick,
         },
       },
+      keyboard: {
+        bindings: {
+          linebreak: {
+            key: 13, // Enter key
+            handler: function (this: any, range: any) {
+              this.quill.insertText(range.index, '\n');
+              this.quill.setSelection(range.index + 1);
+              return false;
+            },
+          },
+        },
+      },
     }),
     [handleToolbarImageClick]
   );
