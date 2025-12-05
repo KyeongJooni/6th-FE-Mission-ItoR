@@ -3,7 +3,7 @@ import { cn } from '@/utils/cn';
 const baseTextStyle = 'text-xs leading-[160%]';
 
 export const postDetailsStyles = {
-  container: 'flex flex-1 min-w-[33.75rem] w-full px-4 py-3 flex-col items-start gap-10 self-stretch',
+  container: 'flex flex-1 w-full px-4 py-3 flex-col items-start gap-10 self-stretch md:min-w-[33.75rem]',
   profileContainer: 'flex items-start gap-1.5',
   userInfo: 'flex items-start',
   profileImage: 'w-5 h-5 rounded-full self-stretch bg-center bg-cover bg-no-repeat',
